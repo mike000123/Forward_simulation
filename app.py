@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
- 
+
 import altair as alt
 import pandas as pd
 import streamlit as st
@@ -33,8 +33,7 @@ with plan_tab:
 5. **State tracking**: signals/orders/events/config snapshots are persisted to `/storage`.
 6. **Reporting**: Streamlit dashboard renders signals, blocked trades, orders, and portfolio metrics.
         """
-     )
- 
+    )
 
     st.subheader("Mode Separation & Live Safeguards")
     st.markdown(
@@ -44,7 +43,7 @@ with plan_tab:
 - Missing API keys automatically block live orders.
 - Risk denials are logged and displayed before any routing attempt.
         """
-     )
+    )
 
     st.subheader("Strategy Abstraction")
     st.markdown(
@@ -53,8 +52,7 @@ with plan_tab:
 - Current plugin: **RSI Mean Reversion**.
 - Add new strategy by creating a class in `trading_platform/strategies/` and wiring it in `TradingEngine._build_strategy`.
         """
-     )
- 
+    )
 
     st.subheader("Persistence/Logging")
     st.code(
@@ -66,8 +64,7 @@ storage/
   configs/last_run.json
         """.strip(),
         language="text",
-     )
- 
+    )
 
 with app_tab:
     st.sidebar.header("Platform Settings")
@@ -132,25 +129,20 @@ with app_tab:
     data = st.session_state.get("market_data")
     if data is None or data.empty:
         st.info("Load market data to continue.")
-         st.stop()
- 
+        st.stop()
 
     st.success(f"Loaded {len(data)} rows for {ticker}.")
- 
 
     c1, c2 = st.columns([1.2, 1.0])
-     with c1:
-
+    with c1:
         st.subheader("Price")
         st.altair_chart(
             alt.Chart(data).mark_line().encode(x="date:T", y="close:Q", tooltip=["date:T", "close:Q"]).properties(height=280),
-             use_container_width=True,
-         )
-
+            use_container_width=True,
+        )
     with c2:
         st.subheader("Data Preview")
         st.dataframe(data.tail(25), use_container_width=True)
- 
 
     config = AppConfig(
         mode=mode,
@@ -174,8 +166,7 @@ with app_tab:
             max_drawdown_pct=float(max_dd),
             max_leverage=float(max_lev),
         ),
-     )
- 
+    )
 
     if st.button("Run Engine", type="primary"):
         engine = TradingEngine(config=config, storage_root="storage")
