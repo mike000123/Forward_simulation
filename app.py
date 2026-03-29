@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
  
- import altair as alt
- import pandas as pd
- import streamlit as st
+import altair as alt
+import pandas as pd
+import streamlit as st
 
 from trading_platform.config import AppConfig, Mode, RiskConfig, StrategyConfig
 from trading_platform.data.sources import MarketDataRequest, fetch_price_data, load_price_data_from_csv
