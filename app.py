@@ -1,4 +1,8 @@
-
+diff --git a/app.py b/app.py
+index b860d66917102259722dc60f0dc74ca6328b80a8..e9489a0bcde309c49cf33cf8694e10fc37d38cb6 100644
+--- a/app.py
++++ b/app.py
+@@ -1,617 +1,200 @@
 -import io
 -from dataclasses import dataclass
 -from typing import Optional, Tuple
@@ -794,6 +798,3 @@
 +            st.bar_chart(orders["mode"].value_counts())
 +    else:
 +        st.caption("No persisted orders yet. Run engine to generate paper/live events.")
- 
-EOF
-)
